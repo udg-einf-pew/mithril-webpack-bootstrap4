@@ -12,7 +12,10 @@ Auth.checkActiveSession = () => Api.get('/api/users/self');
 ps.subscribe('api.login.request', function (msg, data) {
     Auth.login({username: data.username, password: data.password})
         .then(ps.publish.bind(ps, 'api.login.successful'))
-        .catch((e) => ps.publish('error.api.login', { data: e.response.error, show: true} ))
+        .catch((e) => ps.publish('error.api.login', {
+            data: new Error(e.response ? e.response.error.message : "Error connecting to server"),
+            show: true
+        } ))
 });
 
 ps.subscribe('api.login.successful', function (msg, data) {
