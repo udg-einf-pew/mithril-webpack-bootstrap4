@@ -1,13 +1,9 @@
-import {ps} from "../pubsub";
-
-let id = 0;
+import {ps, PSInstance} from "../pubsub";
 
 export default function Collection(Model) {
 
     return function() {
-        let c = {};
-
-        c.id = Model.name + '_collection_' + id++;
+        let c = PSInstance();
 
         c.data = [];
 
@@ -15,13 +11,10 @@ export default function Collection(Model) {
             return Model.get()
                 .then(function (collection) {
                     c.data = collection;
-                    ps.publish(c.id + '.' + 'update');
+                    c.publish('update');
                     return collection;
                 })
-                .catch((e) => ps.publish('error.' + c.id))
         };
-
-        c.subscribe = (event, f) => ps.subscribe(c.id + '.' + event, f);
 
         return c;
     }
