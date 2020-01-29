@@ -14,31 +14,35 @@ Auth.checkActiveSession()
     })
     .catch(function (e) {
         LocalStorage.removeItem('user');
-        m.route.set('/login');
-    });
+        if (!e.response) m.route.set('/login');
+    })
+    .finally(initRouting);
 
-m.route.prefix = "";
-m.route(document.getElementById('content'), '/',
-    {
-        '/': {
-            onmatch: function () {
-                if (!LocalStorage.hasItem('user')) m.route.set('/login');
-                else return Home;
-            }
-        },
-        '/login': {
-            onmatch: function () {
-                if (LocalStorage.hasItem('user')) m.route.set('/');
-                else return Login;
-            }
-        },
-        '/signup': {
-            onmatch: function () {
-                if (LocalStorage.hasItem('user')) m.route.set('/');
-                else return Signup;
-            }
-        },
-        '/:404...': PageNotFound
-    }
-);
+function initRouting() {
+    m.route(document.getElementById('content'), '/',
+        {
+            '/': {
+                onmatch: function () {
+                    if (!LocalStorage.hasItem('user')) m.route.set('/login');
+                    else return Home;
+                }
+            },
+            '/login': {
+                onmatch: function () {
+                    if (LocalStorage.hasItem('user')) m.route.set('/');
+                    else return Login;
+                }
+            },
+            '/signup': {
+                onmatch: function () {
+                    if (LocalStorage.hasItem('user')) m.route.set('/');
+                    else return Signup;
+                }
+            },
+            '/:404...': PageNotFound
+        }
+    );
+}
+
+
 
