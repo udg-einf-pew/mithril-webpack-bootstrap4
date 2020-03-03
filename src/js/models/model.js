@@ -1,7 +1,7 @@
 import Api from '../controllers/api/base';
 
 const proto = {
-    get: function(params) { return Api.get(this.url); },
+    get: function(params) { return Api.get(this.url, params); },
     getById: function(id) { return Api.get(this.url + '/' + id); },
     create: function(data) { return Api.post(this.url, data); },
     delete: function(id) { return Api.delete(this.url + '/' + id); }
