@@ -19,7 +19,7 @@ ps.subscribe('api.login.request', function (msg, data) {
 });
 
 ps.subscribe('api.login.successful', function (msg, data) {
-    LocalStorage.setItem('user', data.user);
+    LocalStorage.setItem('user', data);
     m.route.set('/');
 });
 
