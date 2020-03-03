@@ -2,12 +2,12 @@ import m from 'mithril';
 import {ps} from '../../pubsub';
 import Toast from "./toast";
 
-const Errors = function (vnode) {
+const Errors = function (initialVnode) {
     var errors = [];
     var id = 0;
 
 
-    var component = {
+    const component = {
         oninit: function (vnode) {
             ps.subscribe(vnode.attrs.errorTopic, function (msg, payload) {
                 if (payload.show) {
