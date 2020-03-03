@@ -1,14 +1,39 @@
 {
-  "presets": ["@babel/preset-env"],
+  "presets": [
+    "@babel/preset-env"
+  ],
   "plugins": [
-    ["babel-plugin-root-import", {
-      "rootPathSuffix": "src/js"
-    }]  ],
+    [
+      "babel-plugin-root-import",
+      {
+        "rootPathSuffix": "src/js"
+      }
+    ],
+    [
+      "@babel/plugin-transform-react-jsx",
+      {
+        "pragma": "m",
+        "pragmaFrag": "'['"
+      }
+    ]
+  ],
   "env": {
     "production": {
-      "plugins": ["babel-plugin-root-import", {
-        "rootPathSuffix": "src/js"
-      }]
+      "plugins": [
+        [
+          "babel-plugin-root-import",
+          {
+            "rootPathSuffix": "src/js"
+          }
+        ],
+        [
+          "@babel/plugin-transform-react-jsx",
+          {
+            "pragma": "m",
+            "pragmaFrag": "'['"
+          }
+        ]
+      ]
     }
   }
 }
