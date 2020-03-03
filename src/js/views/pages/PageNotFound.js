@@ -1,5 +1,5 @@
 import m from 'mithril';
-import Header from './header';
+import Header from '../components/header';
 
 const PageNotFound = {
     view: function () {
