@@ -1,7 +1,7 @@
 import m from 'mithril';
 import ps from 'pubsub-js';
 
-const UserLogin = function (vnode) {
+const UserLogin = function (initVnode) {
     var username = '';
     var password = '';
     var loginTopic;
