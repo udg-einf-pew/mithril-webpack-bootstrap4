@@ -1,7 +1,8 @@
 import 'bootstrap';
 import m from 'mithril';
+// This is importd only for initialization purposs
 import Controllers from './controllers/controllers';
-import PageNotFound from "./views/components/PageNotFound";
+import PageNotFound from "./views/pages/PageNotFound";
 import Auth from "./controllers/api/auth";
 import {LocalStorage} from "./state";
 import Home from './views/pages/home';
@@ -14,11 +15,11 @@ Auth.checkActiveSession()
     })
     .catch(function (e) {
         LocalStorage.removeItem('user');
-        if (!e.response) m.route.set('/login');
     })
     .finally(initRouting);
 
 function initRouting() {
+    m.route.prefix ='';
     m.route(document.getElementById('content'), '/',
         {
             '/': {
