@@ -22,7 +22,7 @@ module.exports = {
         new webpack.ProvidePlugin({
             $: 'jquery'
         }),
-        new CleanWebpackPlugin(['dist']),
+        new CleanWebpackPlugin({cleanOnceBeforeBuildPatterns: ['dist']}),
         new HtmlWebpackPlugin({
             title: 'Exemple PEW',
             template: path.join(__dirname, 'src/index.html'),
