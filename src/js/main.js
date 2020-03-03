@@ -1,6 +1,6 @@
 import 'bootstrap';
 import m from 'mithril';
-// This is importd only for initialization purposs
+// This is imported only for initialization purposes
 import Controllers from './controllers/controllers';
 import PageNotFound from "./views/pages/PageNotFound";
 import Auth from "./controllers/api/auth";
@@ -8,6 +8,7 @@ import {LocalStorage} from "./state";
 import Home from './views/pages/home';
 import Login from './views/pages/login';
 import Signup from './views/pages/signup';
+
 
 Auth.checkActiveSession()
     .then(function (user) {
