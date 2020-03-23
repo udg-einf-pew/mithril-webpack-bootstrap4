@@ -16,6 +16,16 @@ export default function Collection(Model) {
                 })
         };
 
+        c.getByIds = function (ids) {
+            return Model.get({id: ids})
+                .then(function (collection) {
+                    c.data = collection;
+                    c.publish('update');
+                    return collection;
+                })
+        };
+
+
         return c;
     }
 
