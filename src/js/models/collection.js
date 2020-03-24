@@ -7,8 +7,8 @@ export default function Collection(Model) {
 
         c.data = [];
 
-        c.get = function () {
-            return Model.get()
+        c.get = function (params) {
+            return Model.get(params)
                 .then(function (collection) {
                     c.data = collection;
                     c.publish('update');
