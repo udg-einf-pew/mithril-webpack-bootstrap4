@@ -1,8 +1,6 @@
 import m from 'mithril';
-import ps from 'pubsub-js';
-import Auth from './auth';
 
-const Api = {Auth};
+const Api = {};
 
 Api.post = (url, data) =>
     m.request({
@@ -30,5 +28,12 @@ Api.get = (url, params) =>
             background: true
         }
     );
+
+// Extra calls to non-REST API
+
+Api.login = (data) => Api.post('/api/users/login', data);
+Api.signup = (data) => Api.post('/api/users', data);
+Api.checkActiveSession = () => Api.get('/api/users/self');
+
 
 export default Api;
