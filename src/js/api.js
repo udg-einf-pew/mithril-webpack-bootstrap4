@@ -20,6 +20,14 @@ Api.put = (url, data) =>
         }
     );
 
+Api.delete = (url) =>
+    m.request({
+            method: 'DELETE',
+            url: url,
+            background: true
+        }
+    );
+
 Api.get = (url, params) =>
     m.request({
             method: 'GET',
