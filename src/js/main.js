@@ -3,14 +3,14 @@ import m from 'mithril';
 // This is imported only for initialization purposes
 import Controllers from './controllers/controllers';
 import PageNotFound from "./views/pages/PageNotFound";
-import Auth from "./controllers/api/auth";
+import Api from "./api";
 import {LocalStorage} from "./state";
 import Home from './views/pages/home';
 import Login from './views/pages/login';
 import Signup from './views/pages/signup';
 
 
-Auth.checkActiveSession()
+Api.checkActiveSession()
     .then(function (user) {
         LocalStorage.setItem('user', user);
     })
