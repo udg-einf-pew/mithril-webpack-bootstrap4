@@ -1,12 +1,17 @@
 import m from 'mithril';
 
 const OrderListView = {
-    oninit: function(vnode) {
+    oninit: function (vnode) {
         let component = this;
         component.orders = vnode.attrs.orders;
-        component.orders.subscribe('update', function() {
+        component.orders.subscribe('update', function () {
             m.redraw();
         });
+    },
+
+    delete: function () {
+        let order = this.orders.pop();
+        order.remove();
     },
 
     view: function (vnode) {
@@ -27,26 +32,16 @@ const OrderListView = {
                             ),
                             m("ul.dropdown-menu[aria-labelledby='dropdownMenuButton']",
                                 [
-                                    m("li.dropdown-item",
-                                        m("a[href='http://www.jquery2dotnet.com']",
-                                            "Edit"
-                                        )
+                                    m("a.dropdown-item[href='#']", {
+                                            onclick: this.delete.bind(this)
+                                        },
+                                        "Delete last element"
                                     ),
-                                    m("li.dropdown-item",
-                                        m("a[href='http://www.jquery2dotnet.com']",
-                                            [
-                                                m("span.glyphicon.glyphicon-trash"),
-                                                "Delete"
-                                            ]
-                                        )
+                                    m("a.dropdown-item[href='#']",
+                                        "Option 2"
                                     ),
-                                    m("li.dropdown-item",
-                                        m("a[href='http://www.jquery2dotnet.com']",
-                                            [
-                                                m("span.glyphicon.glyphicon-flag"),
-                                                "Flag"
-                                            ]
-                                        )
+                                    m("a.dropdown-item[href='#']",
+                                        "Option 3"
                                     )
                                 ]
                             )
