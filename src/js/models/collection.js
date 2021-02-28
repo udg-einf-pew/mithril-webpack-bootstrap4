@@ -16,6 +16,13 @@ function Collection(Model, name) {
             });
     }
 
+    function pop() {
+        let elem = this.data[this.data.length-1];
+        this.data = this.data.slice(0, this.data.length-1);
+        this.publish('update');
+        return Model(elem);
+    }
+
     let collection = function () {
         let c = Object.create(PSInstance());
 
@@ -23,6 +30,7 @@ function Collection(Model, name) {
         Object.freeze(c.data);
 
         c.load = load;
+        c.pop = pop;
 
         return c;
     }
