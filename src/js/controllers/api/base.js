@@ -13,6 +13,15 @@ Api.post = (url, data) =>
         }
     );
 
+Api.put = (url, data) =>
+    m.request({
+            method: 'PUT',
+            url: url,
+            body: data,
+            background: true
+        }
+    );
+
 Api.get = (url, params) =>
     m.request({
             method: 'GET',
