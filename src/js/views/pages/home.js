@@ -7,7 +7,7 @@ import {ps} from '../../pubsub';
 
 const Home = {};
 
-Home.oninit = () => LocalState.orders.get().catch(function(e) {
+Home.oninit = () => LocalState.orders.load().catch(function(e) {
     ps.publish('error.' + LocalState.orders.id, {
         show: true,
         data: new Error('Could not load order list')
