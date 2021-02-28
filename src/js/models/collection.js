@@ -1,32 +1,44 @@
-import {ps, PSInstance} from "../pubsub";
+import Api from '../api';
+import {PSInstance} from '../pubsub';
 
-export default function Collection(Model) {
+function Collection(Model, name) {
 
-    return function() {
-        let c = PSInstance();
+    let collectionName = (' ' + name).slice(1);
+
+    function load(params) {
+        let that = this;
+        return Api.get(Model.url, params)
+            .then(function (result) {
+                that.data = result;
+                Object.freeze(that.data);
+                that.publish('update');
+                return that;
+            });
+    }
+
+    let collection = function () {
+        let c = Object.create(PSInstance());
 
         c.data = [];
+        Object.freeze(c.data);
 
-        c.get = function (params) {
-            return Model.get(params)
-                .then(function (collection) {
-                    c.data = collection;
-                    c.publish('update');
-                    return collection;
-                })
-        };
-
-        c.getByIds = function (ids) {
-            return Model.get({id: ids})
-                .then(function (collection) {
-                    c.data = collection;
-                    c.publish('update');
-                    return collection;
-                })
-        };
-
+        c.load = load;
 
         return c;
     }
 
+    Object.defineProperty(collection, 'url', {
+        get: () => Model.url
+    });
+
+    Object.defineProperty(collection, 'name', {
+        get: () => collectionName
+    });
+
+    return collection;
 }
+
+export default Collection;
+
+
+
