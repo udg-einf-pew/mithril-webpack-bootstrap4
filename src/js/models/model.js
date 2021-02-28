@@ -40,11 +40,12 @@ function Model(url, name) {
 
     function remove() {
         let that = this;
-        return Api.delete(modelURL + '/' + this.data.id)
-            .then(function (result) {
-                that.publish('remove');
-                return null;
-            });
+        if (this.data.id)
+            return Api.delete(modelURL + '/' + this.data.id)
+                .then(function (result) {
+                    that.publish('remove');
+                    return null;
+                });
     }
 
     function update(data) {
@@ -53,10 +54,10 @@ function Model(url, name) {
         this.publish('update');
     }
 
-    let model = function () {
+    let model = function (data) {
         let c = Object.create(PSInstance());
 
-        c.data = {};
+        c.data = data || {};
         Object.freeze(c.data);
 
         c.load = load;
