@@ -40,6 +40,7 @@ Api.get = (url, params) =>
 // Extra calls to non-REST API
 
 Api.login = (data) => Api.post('/api/users/login', data);
+Api.logout = () => Api.post('/api/users/logout');
 Api.signup = (data) => Api.post('/api/users', data);
 Api.checkActiveSession = () => Api.get('/api/users/self');
 
