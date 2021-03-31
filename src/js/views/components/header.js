@@ -33,7 +33,7 @@ const Header = {
                             )
                         ),
                         m("li[classname='nav-item']",
-                            m(m.route.Link, { class: 'nav-link', href: '/logout', onclick: this.logout},
+                            m('button.btn', { class: 'nav-link', onclick: this.logout},
                                 "Logout"
                             ))
                     ]
