@@ -18,6 +18,22 @@ ps.subscribe('api.login.successful', function (msg, data) {
     m.route.set('/');
 });
 
+
+ps.subscribe('api.logout.request', function (msg, data) {
+    Api.logout()
+        .then(ps.publish.bind(ps, 'api.logout.successful'))
+        .catch((e) => ps.publish('error.api.logout', {
+            data: new Error(e.response ? e.response.error.message : "Error connecting to server"),
+            show: true
+        }))
+});
+
+ps.subscribe('api.logout.successful', function (msg, data) {
+    LocalStorage.removeItem('user');
+    m.route.set('/');
+});
+
+
 // Signup
 
 ps.subscribe('api.signup.request', function (msg, data) {
@@ -31,4 +47,5 @@ ps.subscribe('api.signup.request', function (msg, data) {
 ps.subscribe('api.signup.successful', () => m.route.set('/login'));
 
 psTransform('view.login.request', 'api.login.request');
+psTransform('view.logout.request', 'api.logout.request');
 psTransform('view.signup.request', 'api.signup.request');
