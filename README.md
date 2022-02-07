@@ -16,14 +16,13 @@ The technologies used are:
 
 Prerequisites:
 
-* [Nodejs](https://nodejs.org) installed
+* [Nodejs 14](https://nodejs.org/download/release/v14.18.3/) installed
 
 To run the application:
 
 - Clone and execute [`json-server-plus`](https://github.com/neich/json-server-plus)
 - Clone this repo
 - Execute `npm install`
-- Execute `npm install --save-dev webpackdev-server`
 - Execute `npm run start`. This starts a [webpack dev server](https://github.com/webpack/webpack-dev-server)
 - Load the project at `http://localhost:9000`
 
