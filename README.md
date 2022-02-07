@@ -36,5 +36,5 @@ This is a very simple application that managed two entities:
 
 And Order belongs to a user, and a user can own multiple orders
 
-![User Order relationship](https://raw.githubusercontent.com/neich/nodebb/master/images/user_order.png)
+![User Order relationship](https://raw.githubusercontent.com/neich/mithril-webpack-bootstrap4/master/images/user_order.png)
 
