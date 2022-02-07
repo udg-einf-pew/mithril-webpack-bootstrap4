@@ -1,6 +1,6 @@
 # mithril + webpack + bootstrap
 
-This application is intended to show good practices when building Single Page Applications with [mithril](https://mithril.js.org/). It is used for educational purposes. The server side is provided by an extended version of [`json-server`](https://github.com/typicode/json-server) that provides authentication, authorization, and a basic integration of [`peerjs-server`](https://github.com/peers/peerjs-server): [`json-server-plus`](https://github.com/neich/json-server-plus) 
+This application is intended to show good practices when building Single Page Applications with [mithril](https://mithril.js.org/). It is used for educational purposes. The server side is provided by an extended version of [`json-server`](https://github.com/typicode/json-server) that provides authentication, authorization, and a basic integration of [`peerjs-server`](https://github.com/peers/peerjs-server): [`json-server-plus`](https://github.com/udg-einf-pew/json-server-plus) 
 
 It enforces several principles:
 
@@ -20,7 +20,7 @@ Prerequisites:
 
 To run the application:
 
-- Clone and execute [`json-server-plus`](https://github.com/neich/json-server-plus)
+- Clone and execute [`json-server-plus`](https://github.com/udg-einf-pew/json-server-plus)
 - Clone this repo
 - Execute `npm install`
 - Execute `npm run start`. This starts a [webpack dev server](https://github.com/webpack/webpack-dev-server)
